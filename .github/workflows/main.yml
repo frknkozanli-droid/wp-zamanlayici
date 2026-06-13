@@ -1,0 +1,33 @@
+name: Android APK Derleyici
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Kodları Çek
+      uses: actions/checkout@v4
+
+    - name: Java Kurulumu (JDK 17)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: 'gradle'
+
+    - name: Gradle Komutunu Çalıştırılabilir Yap
+      run: chmod +x gradlew
+
+    - name: APK Derle (Release)
+      run: ./gradlew assembleRelease
+
+    - name: APK Dosyasını Çıkart
+      uses: actions/upload-artifact@v4
+      with:
+        name: wp-zamanlayici-apk
+        path: app/build/outputs/apk/release/*.apk
