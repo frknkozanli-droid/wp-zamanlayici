@@ -16,7 +16,6 @@ workflows:
       - name: Android Projesini Derle
         script: |
           cd app
-          chmod +x gradlew
-          ./gradlew assembleRelease
+          gradle assembleRelease
     artifacts:
       - app/app/build/outputs/apk/release/*.apk
