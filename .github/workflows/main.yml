@@ -16,19 +16,21 @@ jobs:
     - name: Java Kurulumu (JDK 17)
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
         java-version: '17'
-        cache: 'gradle'
+        distribution: 'temurin'
 
-    - name: Küresel Gradle Kurulumu
+    - name: Gradle 9.3.1 ve Gerekli Bileşenleri Ayarla
       uses: gradle/actions/setup-gradle@v4
+      with:
+        gradle-version: '9.3.1'
 
-    - name: APK Derle (Release)
+    - name: Android Projesini Derle
       run: |
-        gradle assembleRelease
+        cd app
+        gradle assembleRelease --stacktrace
 
     - name: APK Dosyasını Çıkart
       uses: actions/upload-artifact@v4
       with:
-        name: wp-zamanlayici-apk
-        path: "**/build/outputs/apk/release/*.apk"
+        name: wp-zamanlayici-release-apk
+        path: app/app/build/outputs/apk/release/*.apk
