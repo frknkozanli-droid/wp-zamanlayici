@@ -21,13 +21,15 @@ jobs:
         cache: 'gradle'
 
     - name: Gradle Komutunu Çalıştırılabilir Yap
-      run: chmod +x gradlew
+      run: chmod +x app/gradlew
 
     - name: APK Derle (Release)
-      run: ./gradlew assembleRelease
+      run: |
+        cd app
+        ./gradlew assembleRelease
 
     - name: APK Dosyasını Çıkart
       uses: actions/upload-artifact@v4
       with:
         name: wp-zamanlayici-apk
-        path: app/build/outputs/apk/release/*.apk
+        path: app/app/build/outputs/apk/release/*.apk
