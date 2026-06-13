@@ -1,0 +1,8 @@
+{
+  "name": "Remix: WP Zamanlayıcı",
+  "description": "Seçtiğiniz kişilere belirlediğiniz tarih ve saatte otomatik WhatsApp mesajları gönderen arka plan zamanlayıcı uygulaması.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
